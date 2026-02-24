@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.scss">
   <title>Laboration 5 - Dynamiska webbplatser.</title>
+  <script src="https://cdn.jsdeliver.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -22,31 +23,20 @@
   </header>
 
   <main>
-    <h1>Välkommen!</h1>
-    <div class="card">
-      <p>Det här är en demo med SASS.</p>
-    </div>
+    <h1>Antagningsstatistik HT25</h1>
+    
+    <canvas id="coursesChart"></canvas>
+    <canvas id="programsChart"></canvas>
 
-    <div class="image-stack">
-      <div class="image-stack__item">
-        <img src="/images/river Ånge.webp" alt="Brun ponny med ryttare hoppar över ett hinder på tävlingsbanan.">
-      </div>
 
-      <div class="image-stack__item">
-        <img src="/images/Allbin_timrå_prisutdelning.webp"
-          alt="Ljus, liten ponny stegrar med sin ryttare på en prisutdelning.">
-      </div>
-
-    </div>
-
-    <div id="myChart"></div>
+    
   </main>
 
   <footer>
     &copy;Emma Ågren
   </footer>
 
-  <script src="https://cdn.jsdeliver.net/npm/chart.js"></script>
+  <script type="module" src="/src/diagram.js"></script>
   <script type="module" src="/src/main.js"></script>
 </body>
 
