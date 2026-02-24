@@ -1,0 +1,22 @@
+
+@use 'base' as b;
+@use 'sass:color';
+
+header {
+    background: b.$primary;
+    padding: 1rem;
+}
+
+main {
+    max-width: 70ch;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background: color.adjust(b.$primary, $lightness: 15%);
+}
