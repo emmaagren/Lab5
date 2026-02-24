@@ -15,4 +15,13 @@ new Chart(coursesCtx, {
             backgroundColor: 'rgba(54, 162, 235, 0.6)'
         }]
     },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' }
+        },
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
 });
