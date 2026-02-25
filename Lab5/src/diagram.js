@@ -1,5 +1,10 @@
 
-/**Hämtar data m. fetch och async/await. */
+/**Hämtar data m. fetch och async/await från extern JSON-fil.
+ * @async
+ * @function
+ * @returns {Promise<Array<Object>>} En lista med kurser och program.
+ * @throws {Error} Om fetch misslyckas.
+ */
 async function fetchExternalData() {
     const response = await fetch(
         "https://mallarmiun.github.io/Frontend-baserad-webbutveckling/Moment%205%20-%20Dynamiska%20webbplatser/statistik_sokande_ht25.json"
@@ -12,7 +17,11 @@ async function fetchExternalData() {
     return await response.json();
 }
 
-/**Initierar diagram. */
+/**Initierar diagrammen genom att hämta data, bearbeta den,
+ * plocka ut toppkurser/program och rita stapel- och cirekldiagram.
+ * @async
+ * @function
+ *  */
 async function init() {
     try {
         //Hämta data
@@ -38,6 +47,7 @@ async function init() {
         .sort((a, b) => b.applicants - a.applicants)
         .slice (0, 6);
 
+        //Logga för felsökning.
         const topPrograms = programs
         .sort((a, b) => b.applicants - a.applicants)
         .slice(0, 5);
@@ -52,7 +62,10 @@ async function init() {
 }
 
 
-//Skapa stapeldiagram
+/**Skapar ett stapeldiagram med Chart.js för toppkurser.
+ * @function
+ * @param {Array<{name: string, applicants: number}>} courses - Lista med kursnamn och antal sökande.
+ */
 function createBarChart(courses) {
     const ctx = document.getElementById("coursesChart");
 
@@ -75,7 +88,11 @@ options: {
     });
 }
 
-//Skapa cirkeldiagram
+/**
+ * Skapar ett cirkeldiagram med Chart.js för topprogram.
+ * @function
+ * @param {Array<{name: string, applicants: number}>} programs - Lista med programnamn och antal sökande.
+ */
 function createPieChart(programs) {
     const ctx = document.getElementById("programsChart");
 
@@ -100,5 +117,6 @@ function createPieChart(programs) {
     });
 }
 
+//Kör initiering av diagram.
 init();
 
