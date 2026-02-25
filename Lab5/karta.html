@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.scss">
   <title>Laboration 5 - Dynamiska webbplatser.</title>
+  <script type="module" src="/src/js/map.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,27 @@
   </header>
 
   <main>
-    <h1>Karta</h1>
+    <h1>Sök plats</h1>
+
+    <form id="searchForm">
+        <input
+        type="text"
+        id="locationInput"
+        placeholder="Skriv en plats..."
+        required
+        >
+        <button type="submit">Sök</button>
+    </form>
+
+    <div id="mapContainer">
+        <iframe
+        id="mapFrame"
+        width="100%"
+        height="450"
+        style="border:0;"
+        loading="lazy">
+    </iframe>
+    </div>
 
 
   </main>
