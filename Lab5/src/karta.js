@@ -46,20 +46,22 @@ async function fetchCoordinates(location) {
  * @function updateMap
  * @param {number} lat - Latitud
  * @param {number} lon - Longitud
- * @returns {void}
  */
 function updateMap(lat, lon) {
 
-    const offset = 0.05;
+    const latitude = Number(lat);
+    const longitude = Number(lon);
+
+    const offset = 0.02;
 
     const minLon = lon - offset;
     const minLat = lat - offset;
-    const maxLon = lon - offset;
-    const maxLat = lat - offset;
+    const maxLon = lon + offset;
+    const maxLat = lat + offset;
 
     const bbox = `${minLon},${minLat},${maxLon},${maxLat}`;
 
-        mapFrame.src =
+    mapFrame.src =
         `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
 }
 
