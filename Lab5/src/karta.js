@@ -28,9 +28,10 @@ async function fetchCoordinates(location) {
         }
 
         return {
-            lat: data[0].lat,
-            lon: data[0].lon
+            lat: parseFloat(data[0].lat),
+            lon: parseFloat(data[0].lon)
         };
+
     } catch (error) {
         console.error("Ett fel uppstod:", error);
         return null;
@@ -39,28 +40,38 @@ async function fetchCoordinates(location) {
 
 
 /**
- * Uppdaterar iframe med OpenStreetMap baserat på koordinater.
- * @param {string} lat - Latitud
- * @param {string} lon - Longitud
+ * Uppdaterar kartans iframe genom att skapa en bounding box
+ * runt angivna kordinater och placera en markör.
+ * 
+ * @function updateMap
+ * @param {number} lat - Latitud
+ * @param {number} lon - Longitud
+ * @returns {void}
  */
 function updateMap(lat, lon) {
 
-    const latitude = parseFloat(lat);
-    const longitude = parseFloat(lon);
+    const offset = 0.05;
 
-    const minLon = longitude - 0.01;
-    const minLat = latitude - 0.01;
-    const maxLon = longitude - 0.01;
-    const maxLat = latitude - 0.01;
+    const minLon = lon - offset;
+    const minLat = lat - offset;
+    const maxLon = lon - offset;
+    const maxLat = lat - offset;
 
-    mapFrame.src =
-        `https://www.openstreetmap.org/export/embed.html?marker=${latitude}%2C${longitude}&layer=mapnik`;
+    const bbox = `${minLon},${minLat},${maxLon},${maxLat}`;
+
+        mapFrame.src =
+        `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
 }
 
 
 /**
  * Hanterar formulär-sökning
+ * Hämtar användarens plats, anropar API och uppdaterar kartan.
+ * 
+ * @async
+ * @function handleSearch
  * @param {Event} event
+ * @returns {Promise<void>}
  */
 async function handleSearch(event) {
     event.preventDefault();
